@@ -39,10 +39,10 @@ class GameSprite(sprite.Sprite):
         if self.rect.colliderect(racket1.rect) or self.rect.colliderect(racket2.rect):
             self.speedx *= -1
         
-        if self.rect.y >= win_height or self.rect.y <= 0:
+        if self.rect.bottom >= win_height or self.rect.top <= 0:
             self.speedy *= -1
         # проигрыш
-        if self.rect.x < 100 or self.rect.x > win_width-145:
+        if self.rect.x < 0 or self.rect.x > win_width:
             self.speedx=0
             self.speedy=0
             racket1.speedx=0
@@ -50,7 +50,6 @@ class GameSprite(sprite.Sprite):
             racket2.speedx=0
             racket2.speedy=0
             window.blit(lose, (215, win_height/2))
-            
 
 # класс главного игрока
 class Player(GameSprite):
@@ -88,8 +87,8 @@ window = display.set_mode((win_width, win_height))
 
 
 # создаем ракетки
-racket1 = Player('racket.png', 100, win_height/2, 45, 110, 0, 15)
-racket2 = Player('racket.png', win_width-145, win_height/2, 45, 110, 0, 15)
+racket1 = Player('racket.png', 100, win_height/2, 25, 110, 0, 15)
+racket2 = Player('racket.png', win_width-145, win_height/2, 25, 110, 0, 15)
 ball = GameSprite('tenis_ball.png', win_width/2, win_height/2, 50, 50, 3, 3)
 
 
